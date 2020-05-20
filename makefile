@@ -1,13 +1,23 @@
+OUTPUT=svm
+OBJ=main.o load.o vm.o
+
+CFLAGS=-Wall -Wextra
+LDFLAGS=
+
 .PHONY: all clean
 
-all: vm hex2bin
+all: ${OUTPUT}
 
-vm: vm.c
-	cc -g -o $@ $<
+${OUTPUT}: ${OBJ}
+	${CC} ${CFLAGS} ${LDFLAGS} -o ${OUTPUT} $^
 
-hex2bin: hex2bin.c
-	cc -g -o $@ $<
-	
+as: assembler.o
+	${CC} ${CFLAGS} -o $@ $^
+
+# Clean build files
 clean:
-	rm -f hex2bin
-	rm -f vm
+	rm -f ${OBJ}
+	rm -f ${OUTPUT}
+	rm -f as
+	rm -f assembler.o
+	
