@@ -4,6 +4,8 @@ as
 *.o
 
 ## LaTeX
+*.out
+*.toc
 *.aux
 *.fdb_latexmk
 *.fls
