@@ -1,13 +1,5 @@
-## C
 svm
 as
+a.out
+*.d
 *.o
-
-## LaTeX
-*.out
-*.toc
-*.aux
-*.fdb_latexmk
-*.fls
-*.log
-*.synctex.gz

@@ -1,23 +1,20 @@
-OUTPUT=svm
-OBJ=main.o load.o vm.o
+OBJS=main.o svm.o
 
-CFLAGS=-Wall -Wextra
-LDFLAGS=
+CFLAGS=-g
 
 .PHONY: all clean
 
-all: ${OUTPUT}
+all: svm
 
-${OUTPUT}: ${OBJ}
-	${CC} ${CFLAGS} ${LDFLAGS} -o ${OUTPUT} $^
+svm: ${OBJS}
+	${CC} ${CFLAGS} -o $@ ${OBJS}
 
 as: assembler.o
-	${CC} ${CFLAGS} -o $@ $^
+	${CC} ${CFLAGS} -o $@ assembler.o
 
-# Clean build files
+
+%.o: %.c
+	${CC} ${CFLAGS} -c -MD -o $@ $<
+
 clean:
-	rm -f ${OBJ}
-	rm -f ${OUTPUT}
-	rm -f as
-	rm -f assembler.o
-	
+	rm -f $(shell find . -name "*.d") $(shell find . -name "*.o") as svm

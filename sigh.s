@@ -1,0 +1,4 @@
+prnt
+nop
+nop
+exit
